@@ -1,0 +1,22 @@
+<div class="container text-center mt-5">
+    <h1 class="text-decoration-underline text-success">Welcome</h1>
+</div>
+<div class="container">
+    <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
+    <hr>
+    <div class="container ml-5">
+        <div class="container ml-5 shadow p-3 mb-5 bg-secondary rounded px-5">
+            <div class="text-muted text-decoration-underline mb-4">
+                <h3 class="text-white text-decoration-underline text-center"> Your Todos </h3>
+            </div>
+    
+            <div class="text-warning" *ngIf="this.todos.length==0; else elseBlock">No Todos to display</div>
+            <ng-template #elseBlock>
+                <div *ngFor="let todo of todos; index as i">
+                    <app-todo-item [todo]="todo" [i]="i" (todoDelete)="deleteTodo($event)"
+                        (todoCheckbox)="toggleTodo($event)"></app-todo-item>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
